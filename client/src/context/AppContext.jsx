@@ -8,8 +8,9 @@ export const AppContextProvider = (props) => {
 
     
     axios.defaults.withCredentials = true;
-    // const backendUrl = window.location.origin === 'https://authentication-system-zeta-coral.vercel.app' ?  import.meta.env.VITE_PRODUCT_BACKEND_URL : import.meta.env.VITE_BACKEND_URL; 
-    const backendUrl = import.meta.env.VITE_BACKEND_URL;
+    // Auto-detect environment: use production URL if in production, else development
+    const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+    const backendUrl = isProduction ? import.meta.env.VITE_BACKEND_URL : import.meta.env.VITE_BACKEND_URL;
     const [isLoggedin, setIsLoggedin] = useState(false);
     const [userData, setUserData] = useState(false);
     
