@@ -13,7 +13,7 @@ connectDB();
 // Auto-detect environment and set allowed origins
 const isProduction = process.env.NODE_ENV === 'production';
 const allowedOrigins = isProduction 
-  ? ['https://authenticationsystem-oz6d.onrender.com'] // Update with your actual production domain
+  ? ['https://authentication-system-zeta-coral.vercel.app']
   : ['http://localhost:5173']
 
 app.use(express.json());
