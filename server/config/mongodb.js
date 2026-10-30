@@ -3,7 +3,6 @@ import 'dotenv/config'
 
 const connectDB = async () => {
     try{
-        console.log("This is the url", process.env.MONGODB_URL);
         if(!process.env.MONGODB_URL){
             throw new Error('Mongo_URL environment variable is not defined. Please check your .env file.');
         }
@@ -20,7 +19,15 @@ const connectDB = async () => {
             console.log('⚠️ MongoDB Disconnected');
         })
 
-        await mongoose.connect(`${process.env.MONGODB_URL}/mern-auth`);
+        // await mongoose.connect(`${process.env.MONGODB_URL}/mern-auth`);
+
+        await mongoose.connect(
+            process.env.MONGODB_URL,
+            { dbName: "mern-auth" }
+        );
+
+        console.log("Connected Database:", mongoose.connection.name);
+
     }catch(error){
         console.error('❌ Database Connection Failed:', error.message);
         process.exit(1);
